@@ -3,13 +3,20 @@ import { Card } from "@/components/Card";
 import { Button } from "@/components/Button";
 import Link from "next/link";
 
-export default function SignupPage({
+export default async function SignupPage({
   searchParams,
 }: {
-  searchParams: { error?: string; check_email?: string; email?: string };
+  searchParams: Promise<{
+    error?: string;
+    check_email?: string;
+    email?: string;
+  }>;
 }) {
-  const showCheckEmail = String(searchParams?.check_email ?? "") === "1";
-const email = decodeURIComponent(String(searchParams?.email ?? ""));
+
+  const params = await searchParams;
+
+  const showCheckEmail = params?.check_email === "1";
+  const email = decodeURIComponent(String(params?.email ?? ""));
 
   return (
     <>
