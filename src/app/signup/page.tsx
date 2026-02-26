@@ -3,19 +3,20 @@ import { Card } from "@/components/Card";
 import { Button } from "@/components/Button";
 import Link from "next/link";
 
+type Params = {
+  error?: string;
+  check_email?: string;
+  email?: string;
+};
+
 export default async function SignupPage({
   searchParams,
 }: {
-  searchParams: Promise<{
-    error?: string;
-    check_email?: string;
-    email?: string;
-  }>;
+  searchParams: Promise<Params>;
 }) {
-
   const params = await searchParams;
 
-  const showCheckEmail = params?.check_email === "1";
+  const showCheckEmail = String(params?.check_email ?? "") === "1";
   const email = decodeURIComponent(String(params?.email ?? ""));
 
   return (
@@ -25,24 +26,18 @@ export default async function SignupPage({
         <Card>
           <h1 className="text-2xl font-semibold">Create account</h1>
 
-{/* PROMO MESSAGE */}
-<div className="mt-3 rounded-md border border-emerald-800 bg-emerald-950/40 px-3 py-2 text-sm text-emerald-200">
-  <div className="font-semibold">
-    🎉 First Month FREE for West Georgia Contractors
-  </div>
-  <div className="mt-1">
-    Use promo code <span className="font-semibold">FREE</span>
-  </div>
-  <div className="mt-1 text-xs text-emerald-300">
-    No charge today. Cancel anytime.
-  </div>
-</div>
+          {/* PROMO MESSAGE */}
+          <div className="mt-3 rounded-md border border-emerald-800 bg-emerald-950/40 px-3 py-2 text-sm text-emerald-200">
+            <div className="font-semibold">🎉 First Month FREE for West Georgia Contractors</div>
+            <div className="mt-1">
+              Use promo code <span className="font-semibold">FREE</span>
+            </div>
+            <div className="mt-1 text-xs text-emerald-300">No charge today. Cancel anytime.</div>
+          </div>
 
-          
-
-          {searchParams?.error ? (
+          {params?.error ? (
             <p className="mt-3 rounded-md border border-rose-800 bg-rose-950/40 px-3 py-2 text-sm text-rose-200">
-              {searchParams.error}
+              {params.error}
             </p>
           ) : null}
 
