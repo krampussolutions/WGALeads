@@ -8,8 +8,8 @@ export default function SignupPage({
 }: {
   searchParams: { error?: string; check_email?: string; email?: string };
 }) {
-  const showCheckEmail = searchParams?.check_email === "1";
-  const email = (searchParams?.email ?? "").toString();
+  const showCheckEmail = String(searchParams?.check_email ?? "") === "1";
+const email = decodeURIComponent(String(searchParams?.email ?? ""));
 
   return (
     <>
