@@ -19,7 +19,7 @@ export default async function BrowsePage({ searchParams }: { searchParams: any }
     .select("id,slug,business_name,category,city,county,state,service_area,headline,created_at,account_type,logo_url,is_featured")
     .eq("is_published", true)
     .order("is_featured", { ascending: false })
-    .order("created_at", { ascending: false });
+    .order("created_at", { ascending: true });
 
   if (category) query = query.ilike("category", `%${category}%`);
   if (city) query = query.ilike("city", `%${city}%`);
