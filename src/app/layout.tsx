@@ -10,18 +10,21 @@ export const metadata: Metadata = {
   },
 
   description:
-    "Find trusted contractors and realtors in West Georgia including Carrollton, LaGrange, Newnan, Douglasville and Villa Rica. First month FREE for contractors.",
+    "Find trusted contractors and realtors in West Georgia. Browse local services, request quotes, or list your business for $10/month. First month FREE for contractors.",
 
   keywords: [
     "West Georgia contractors",
-    "Carrollton GA contractors",
-    "Douglasville contractors",
-    "LaGrange contractors",
-    "Newnan GA contractors",
-    "Villa Rica contractors",
-    "West GA directory",
-    "find contractors West Georgia",
-    "local contractors Georgia"
+    "West GA contractors",
+    "contractor directory",
+    "local contractors",
+    "roofing",
+    "plumbing",
+    "electrical",
+    "HVAC",
+    "landscaping",
+    "concrete",
+    "handyman",
+    "West GA Leads",
   ],
 
   openGraph: {
@@ -30,7 +33,6 @@ export const metadata: Metadata = {
       "Find trusted contractors and realtors in West Georgia. First month FREE for contractors.",
     url: "https://wgaleads.com",
     siteName: "West GA Leads",
-
     images: [
       {
         url: "/og-image.png",
@@ -38,7 +40,6 @@ export const metadata: Metadata = {
         height: 630,
       },
     ],
-
     locale: "en_US",
     type: "website",
   },
@@ -46,8 +47,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "West GA Leads",
-    description:
-      "Find trusted contractors in West Georgia",
+    description: "Find trusted contractors in West Georgia",
     images: ["/og-image.png"],
   },
 
@@ -64,10 +64,26 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+        {/* Step 5: Schema markup for SEO */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "LocalBusiness",
+              name: "West GA Leads",
+              url: "https://wgaleads.com",
+              areaServed: "West Georgia",
+              description:
+                "West GA Leads is a local contractor and realtor directory that helps homeowners find and contact local professionals.",
+            }),
+          }}
+        />
+      </head>
+
       <body>
-        <div className="min-h-screen">
-          {children}
-        </div>
+        <div className="min-h-screen">{children}</div>
       </body>
     </html>
   );
